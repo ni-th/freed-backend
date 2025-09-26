@@ -10,4 +10,6 @@ public interface PaperService {
     PaperDTO getPaperById(int id);
     PaperDTO updatePaper(PaperDTO paperDTO);
     void deletePaper(int id);
+    List<PaperDTO> findByLevel(String level);
+
 }

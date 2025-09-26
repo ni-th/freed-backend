@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class PapersEntity {
+public class PaperEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int uploadID;

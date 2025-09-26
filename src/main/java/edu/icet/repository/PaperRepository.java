@@ -1,7 +1,16 @@
 package edu.icet.repository;
 
-import edu.icet.entity.PapersEntity;
+import edu.icet.entity.PaperEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface PaperRepository extends JpaRepository<PapersEntity, Integer> {
+import java.util.List;
+
+public interface PaperRepository extends JpaRepository<PaperEntity, Integer> {
+
+    List<PaperEntity> findByLevel(String level);
+
+
+
+
+
 }

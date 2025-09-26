@@ -44,4 +44,17 @@ public class PaperController {
         paperService.deletePaper(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/by-level")
+    public ResponseEntity<List<PaperDTO>> getByLevel(@RequestParam(required = false) String level) {
+        List<PaperDTO> papers;
+
+        if (level != null && !level.isEmpty()) {
+            papers = paperService.findByLevel(level); // fetch by level
+        } else {
+            papers = paperService.getAllPapers(); // fetch all papers if no level provided
+        }
+
+        return ResponseEntity.ok(papers);
+    }
+
 }

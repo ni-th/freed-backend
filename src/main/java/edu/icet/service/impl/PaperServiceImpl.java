@@ -1,7 +1,7 @@
 package edu.icet.service.impl;
 
 import edu.icet.dto.PaperDTO;
-import edu.icet.entity.PapersEntity;
+import edu.icet.entity.PaperEntity;
 import edu.icet.repository.PaperRepository;
 import edu.icet.service.PaperService;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +20,7 @@ public class PaperServiceImpl implements PaperService {
 
 
     public PaperDTO createPaper(PaperDTO paper) {
-
-        return mapper.map(mapper.map(paper, PaperDTO.class), PaperDTO.class);
+        return mapper.map(paperRepository.save(mapper.map(paper, PaperEntity.class)), PaperDTO.class);
     }
 
     @Override
@@ -40,12 +39,20 @@ public class PaperServiceImpl implements PaperService {
 
     @Override
     public PaperDTO updatePaper(PaperDTO paperDTO) {
-        return mapper.map(paperRepository.save(mapper.map(paperDTO, PapersEntity.class)), PaperDTO.class);
+        return mapper.map(paperRepository.save(mapper.map(paperDTO, PaperEntity.class)), PaperDTO.class);
     }
 
     @Override
     public void deletePaper(int id) {
         paperRepository.deleteById(id);
+    }
+    @Override
+    public List<PaperDTO> findByLevel(String level) {
+        List<PaperDTO> paperDTOList = new ArrayList<>();
+        paperRepository.findByLevel(level).forEach(paper -> {
+            paperDTOList.add(mapper.map(paper, PaperDTO.class));
+        });
+        return paperDTOList;
     }
 
 
