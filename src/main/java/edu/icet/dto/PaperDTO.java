@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PapersDTO {
+public class PaperDTO {
     private int uploadID;
     private String level;
     private String paperType;
