@@ -16,19 +16,19 @@ import java.util.List;
 public class PaperController {
     private final PaperService paperService;
 
-    @PostMapping("create")
+    @PostMapping("/create")
     public ResponseEntity<PaperDTO> createPaper(@RequestBody PaperDTO paperDTO) {
         PaperDTO createdPaper = paperService.createPaper(paperDTO);
         return ResponseEntity.ok(createdPaper);
     }
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<List<PaperDTO>> getAllPapers() {
         List<PaperDTO> papers = paperService.getAllPapers();
         return ResponseEntity.ok(papers);
     }
 
-    @GetMapping("get/{id}")
+    @GetMapping("/get/{id}")
     public ResponseEntity<PaperDTO> getPaperById(@PathVariable int id) {
         PaperDTO paperDTO = paperService.getPaperById(id);
         return ResponseEntity.ok(paperDTO);
@@ -39,7 +39,7 @@ public class PaperController {
         PaperDTO updatedPaper = paperService.updatePaper(paperDTO);
         return ResponseEntity.ok(updatedPaper);
     }
-    @DeleteMapping("/{id}")
+    @DeleteMapping("delete/{id}")
     public ResponseEntity<Void> deletePaper(@PathVariable int id) {
         paperService.deletePaper(id);
         return ResponseEntity.noContent().build();
