@@ -1,11 +1,47 @@
 package edu.icet.controller;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import edu.icet.dto.PaperDTO;
+import edu.icet.service.PaperService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/papers")
+@RequiredArgsConstructor
+@RequestMapping("/api/paper")
 public class PaperController {
+    private final PaperService paperService;
+
+    @PostMapping("create")
+    public ResponseEntity<PaperDTO> createPaper(@RequestBody PaperDTO paperDTO) {
+        PaperDTO createdPaper = paperService.createPaper(paperDTO);
+        return ResponseEntity.ok(createdPaper);
+    }
+
+    @GetMapping("all")
+    public ResponseEntity<List<PaperDTO>> getAllPapers() {
+        List<PaperDTO> papers = paperService.getAllPapers();
+        return ResponseEntity.ok(papers);
+    }
+
+    @GetMapping("get/{id}")
+    public ResponseEntity<PaperDTO> getPaperById(@PathVariable int id) {
+        PaperDTO paperDTO = paperService.getPaperById(id);
+        return ResponseEntity.ok(paperDTO);
+    }
+
+    @PutMapping("/update")
+    public ResponseEntity<PaperDTO> updatePaper(@RequestBody PaperDTO paperDTO) {
+        PaperDTO updatedPaper = paperService.updatePaper(paperDTO);
+        return ResponseEntity.ok(updatedPaper);
+    }
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePaper(@PathVariable int id) {
+        paperService.deletePaper(id);
+        return ResponseEntity.noContent().build();
+    }
 }
