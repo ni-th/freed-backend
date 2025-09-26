@@ -1,4 +1,7 @@
 package edu.icet.repository;
 
-public interface CourseRepository {
+import edu.icet.entity.CourseEntity;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface CourseRepository extends JpaRepository<CourseEntity,Integer> {
 }
